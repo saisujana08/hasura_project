@@ -1,0 +1,6 @@
+<form  [formGroup]="templateForm">
+    <div class="form-field">
+        <input class="form-control" type="text" placeholder="Template Name" formControlName="template_Name">
+    </div>
+    <button [disabled]="templateForm.invalid" (click)="handleBtn()"> Add Template </button>
+</form>

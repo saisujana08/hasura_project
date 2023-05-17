@@ -1,0 +1,11 @@
+<!-- <form>
+    <div class="form-field">
+        <input type="text" placeholder="Template Name">
+    </div>
+    <button>Edit</button>
+</form> -->
+<ul>
+    <li *ngFor="let temp of templates | async">
+        {{temp.template_name}}
+    </li>
+</ul>
