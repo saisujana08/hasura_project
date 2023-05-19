@@ -1,0 +1,13 @@
+<ul>
+    <li *ngFor="let ver of displayVersion | async">
+        {{ver.version_description}}
+        {{ver.version_number}}
+    </li>
+</ul>
+<div>
+    <button (click)="addVersion()">ADD</button>
+    <button *ngIf="versionForm" (click)="saveVersion()">SAVE</button>
+    <form *ngIf="versionForm" [formGroup]="addForm">
+        <input type="text"  formControlName="addVersionName" placeholder="">
+    </form>   
+</div>

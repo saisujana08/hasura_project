@@ -1,11 +1,22 @@
-<!-- <form>
-    <div class="form-field">
-        <input type="text" placeholder="Template Name">
+<div>
+    <div (click)="toogle()">{{name}}</div>
+
+    <button (click)="OnClick()">Edit</button>
+    <button *ngIf="form" (click)="Save()">Save</button>
+    <form *ngIf="form" [formGroup]="editForm">
+        <input type="text" formControlName="template_name">
+    </form>
+
+    <div *ngIf="showVersions">
+        <div *ngFor="let temp of templates | async">
+            {{temp.version_description}}
+            <!-- {{temp.version_number}} -->
+            <button (click)="EditVersion()" >Edit Version</button>
+            <button *ngIf="editVersionForm" (click)="updateVersion(temp.version_description)">Save</button>
+        </div>
+        <form *ngIf="editVersionForm" [formGroup]="editVersion">
+            <input type="text" formControlName="version_name">
+        </form>
+        <button (click)="AddVersion()" >Add Version</button>
     </div>
-    <button>Edit</button>
-</form> -->
-<ul>
-    <li *ngFor="let temp of templates | async">
-        {{temp.template_name}}
-    </li>
-</ul>
+</div>

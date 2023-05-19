@@ -1,0 +1,15 @@
+<!-- <form>
+    <div class="form-field">
+        <input type="text" placeholder="Template Name">
+    </div>
+    <button>Edit</button>
+</form> -->
+<ul>
+    <li *ngFor="let temp of templates | async">
+        <!-- {{temp.template_name}} -->
+        <app-template name="{{temp.template_name}} " id="{{temp.template_id}}"></app-template>
+        
+    </li>
+</ul>
+
+<!-- data: Suji -->
