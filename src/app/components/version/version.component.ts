@@ -28,7 +28,16 @@ query MyQuery ($template_id:uuid) {
     }
   }
 }
-`;
+`
+const ADD_VERSION =gql`
+mutation MyMutation ($template_id:uuid, $version_description:String, $version_number: number ){
+  insert_template_versions(objects: {template_id: $template_id, version_description: $version_description, version_number: 3}) {
+    returning {
+      version_description
+    }
+  }
+}
+`
 
 @Component({
   selector: 'app-version',
@@ -56,12 +65,16 @@ export class VersionComponent {
 
   addVersion(){
     this.versionForm=!this.versionForm
+    
 
   }
 
   saveVersion(){
     console.log(this.addForm.value.addVersionName);
-    
+    this.apollo.mutate({
+      mutation: ADD_VERSION,
+      variables:{template_id:this.template_id, version_description:this.addForm.value.addVersionName!}
+    }).subscribe(({data}) => (console.log(data)))
   }
 
   addForm= new FormGroup({
